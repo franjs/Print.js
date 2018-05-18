@@ -37,7 +37,8 @@ export default {
       ignoreElements: [],
       imageStyle: 'width:100%;',
       repeatTableHeader: true,
-      css: null
+      css: null,
+      hideHeaderAndFooter: false,
     }
 
     // Check if a printable document or object was supplied
@@ -76,6 +77,7 @@ export default {
         params.imageStyle = typeof args.imageStyle !== 'undefined' ? args.imageStyle : params.imageStyle
         params.repeatTableHeader = typeof args.repeatTableHeader !== 'undefined' ? args.repeatTableHeader : params.repeatTableHeader
         params.css = typeof args.css !== 'undefined' ? args.css : params.css
+        params.hideHeaderAndFooter = typeof args.hideHeaderAndFooter !== 'undefined' ? args.hideHeaderAndFooter : params.hideHeaderAndFooter
         break
       default:
         throw new Error('Unexpected argument type! Expected "string" or "object", got ' + typeof args)
@@ -112,9 +114,13 @@ export default {
     // Set element id
     printFrame.setAttribute('id', params.frameId)
 
+    if (params)
+
     // For non pdf printing, pass an empty html document to srcdoc (force onload callback)
     if (params.type !== 'pdf') {
-      printFrame.srcdoc = '<html><head><title>' + params.documentTitle + '</title></head><body></body></html>'
+      const headerAndFooterVisible = params.hideHeaderAndFooter === true ?
+          '<style type="text/css">@page { size: auto; margin: 0; }</style>' : ''
+      printFrame.srcdoc = '<html><head>' + headerAndFooterVisible + '<title>' + params.documentTitle + '</title></head><body></body></html>'
     }
 
     // Check printable type

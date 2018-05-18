@@ -50,7 +50,6 @@ const Print = {
 
 function finishPrint (iframeElement, params) {
   iframeElement.focus()
-
   // If Edge or IE, try catch with execCommand
   if (Browser.isEdge() || Browser.isIE()) {
     try {
