@@ -6,8 +6,9 @@ import Pdf from './pdf'
 import Html from './html'
 import Image from './image'
 import Json from './json'
+import InvoiceJson from './invoiceJson'
 
-let printTypes = ['pdf', 'html', 'image', 'json']
+let printTypes = ['pdf', 'html', 'image', 'json', 'invoice']
 
 export default {
   init () {
@@ -39,6 +40,14 @@ export default {
       repeatTableHeader: true,
       css: null,
       hideHeaderAndFooter: false,
+      includeDateAndTime: false,
+      invoiceData: {
+        customer: null,
+        invoiceNumber: null,
+        subtotal: null,
+        total: null,
+        credit: null
+      },
     }
 
     // Check if a printable document or object was supplied
@@ -78,6 +87,8 @@ export default {
         params.repeatTableHeader = typeof args.repeatTableHeader !== 'undefined' ? args.repeatTableHeader : params.repeatTableHeader
         params.css = typeof args.css !== 'undefined' ? args.css : params.css
         params.hideHeaderAndFooter = typeof args.hideHeaderAndFooter !== 'undefined' ? args.hideHeaderAndFooter : params.hideHeaderAndFooter
+        params.includeDateAndTime = typeof args.includeDateAndTime !== 'undefined' ? args.includeDateAndTime : params.includeDateAndTime
+        params.invoiceData = typeof args.invoiceData !== 'undefined' ? args.invoiceData : params.invoiceData
         break
       default:
         throw new Error('Unexpected argument type! Expected "string" or "object", got ' + typeof args)
@@ -146,6 +157,9 @@ export default {
         break
       case 'json':
         Json.print(params, printFrame)
+        break
+      case 'invoice':
+        InvoiceJson.print(params, printFrame)
         break
     }
   }

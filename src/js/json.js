@@ -98,5 +98,10 @@ function jsonToHTML (params) {
   // Add the table closing tag
   htmlData += '</tbody></table>'
 
+  if (params.includeDateAndTime) {
+      const d = new Date();
+      htmlData += '</ br><p style="text-align: center;">' + d.toLocaleString([], { hour12: true}) + '</p>'
+  }
+
   return htmlData
 }

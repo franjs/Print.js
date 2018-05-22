@@ -42,7 +42,15 @@
             }
         ]
 
-        printJS({printable: data, properties: ['test1', 'test2.a'], type: 'json', hideHeaderAndFooter: true})
+        let invoiceData = {
+            customer: "Francisco Silva",
+            invoiceNumber: "0000001",
+            subtotal: "450.00 $",
+            credit: "100.00 $",
+            total: "350.00 $"
+        }
+
+        printJS({printable: data, properties: ['test1', 'test2.a'], type: 'invoice', hideHeaderAndFooter: true, includeDateAndTime: false, invoiceData: invoiceData})
     }
   </script>
   <body>
