@@ -46,7 +46,8 @@ export default {
         invoiceNumber: null,
         subtotal: null,
         total: null,
-        credit: null
+        credit: null,
+        date: null
       },
     }
 

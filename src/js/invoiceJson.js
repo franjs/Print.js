@@ -43,8 +43,7 @@ export default {
 }
 
 function jsonToHTML (params) {
-    const d = new Date();
-    const date = d.toLocaleDateString([], { hour12: true})
+    const date = params.invoiceData.date
     const customer = params.invoiceData.customer
     const invoiceNumber = params.invoiceData.invoiceNumber
     const subtotal = params.invoiceData.subtotal
@@ -55,7 +54,11 @@ function jsonToHTML (params) {
     let data = params.printable
     let properties = params.properties
 
-    let htmlData = '<h3>Fecha: ' + date +'</h3>'
+    let htmlData = ''
+
+    if (date) {
+        htmlData += '<h3>Fecha: ' + date +'</h3>'
+    }
 
     if (invoiceNumber) {
         htmlData += '<h3>Recibo Nro: ' + invoiceNumber +'</h3>'
