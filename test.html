@@ -51,7 +51,16 @@
             date: "22/05/2018"
         }
 
-        printJS({printable: data, properties: ['test1', 'test2.a'], type: 'invoice', hideHeaderAndFooter: true, includeDateAndTime: false, invoiceData: invoiceData})
+        printJS({
+            printable: data,
+            properties: ['test1', 'test2.a'],
+            type: 'invoice',
+            hideHeaderAndFooter: true,
+            includeDateAndTime: false,
+            invoiceData: invoiceData,
+            header: 'Recibo',
+            headerStyle: 'font-weight: 8px; text-align: center;',
+        })
     }
   </script>
   <body>

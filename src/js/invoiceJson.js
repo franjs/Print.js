@@ -56,16 +56,16 @@ function jsonToHTML (params) {
 
     let htmlData = ''
 
-    if (date) {
-        htmlData += '<h3>Fecha: ' + date +'</h3>'
-    }
-
     if (invoiceNumber) {
-        htmlData += '<h3>Recibo Nro: ' + invoiceNumber +'</h3>'
+        htmlData += '<h3>Nro: ' + invoiceNumber +'</h3>'
     }
 
     if (customer) {
         htmlData += '<h3>Cliente: ' + customer +'</h3>'
+    }
+
+    if (date) {
+        htmlData += '<h3>Fecha: ' + date +'</h3>'
     }
 
     // Create a table and define the header as repeatable
@@ -125,16 +125,18 @@ function jsonToHTML (params) {
     // Add the table closing tag
     htmlData += '</tbody></table>'
 
+    htmlData += '<h3 style="text-align: right;">Cantidad a Pagar:</h3>'
+
     if (subtotal) {
-        htmlData += '<h3 style="text-align: right;">Subtotal: ' + subtotal +'</h3>'
+        htmlData += '<h4 style="text-align: right;">Subtotal: ' + subtotal +'</h4>'
     }
 
     if (credit) {
-        htmlData += '<h3 style="text-align: right;">Abono: ' + credit +'</h3>'
+        htmlData += '<h4 style="text-align: right;">Abono: ' + credit +'</h4>'
     }
 
     if (total) {
-        htmlData += '<h3 style="text-align: right;">Total a pagar: ' + total +'</h3>'
+        htmlData += '<h4 style="text-align: right;">Total: ' + total +'</h4>'
     }
 
     return htmlData
